@@ -10,4 +10,9 @@ public class SimpleRestController {
     public String getHello() {
         return "Hello";
     }
+
+    @GetMapping("/")
+    public String works() {
+        return "It's ALIVE!!!";
+    }
 }
