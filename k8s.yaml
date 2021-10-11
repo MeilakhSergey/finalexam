@@ -17,11 +17,11 @@ spec:
 #      maxSurge: 25%
 #      maxUnavailable: 25%
 #    type: RollingUpdate
-#  template:
+  template:
 #    metadata:
 #      creationTimestamp: null
-#      labels:
-#        app: my-app
+      labels:
+        app: my-app
     spec:
       containers:
         - image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
