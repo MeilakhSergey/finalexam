@@ -1,6 +1,7 @@
 package pl.epam.meilakh.finalexam.dao;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Data
+@Getter @Setter
 public class Person {
 
     @Id
@@ -18,4 +19,8 @@ public class Person {
     private String name;
 
     private Integer age;
+
+    public String toString() {
+        return "[Person: name: " + name + ", age: " + age;
+    }
 }
