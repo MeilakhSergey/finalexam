@@ -13,6 +13,6 @@ public class SimpleRestController {
 
     @GetMapping("/")
     public String works() {
-        return "It's ALIVE!!!!!!     ALIVE!!!!!    Or not?";
+        return "It's ALIVE!!!!!!     ALIVE!!!!!";
     }
 }
