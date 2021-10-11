@@ -9,7 +9,7 @@ steps:
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
-      - --filename=cloudbuild.yaml
+      - --filename=k8s.yaml
       - --image=europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
       - --location=europe-west4-a
       - --cluster=my-cluster
