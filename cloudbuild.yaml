@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: my-app
+steps:
+  # build the container image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1", "."]
+    # push container image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1"]
+    # deploy container image to GKE
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+      - run
+      - --filename=cloudbuild.yaml
+      - --image=europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
+      - --location=europe-west4-a
+      - --cluster=my-cluster
+
