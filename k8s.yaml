@@ -60,7 +60,7 @@ spec:
 
             # Replace DB_PORT with the port the proxy should listen on
             # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
-            - "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:127.0.0.1:3306"
+            - "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306"
             # This flag specifies where the service account key can be found
             - "-credential_file=/secrets/service_account.json"
           securityContext:
