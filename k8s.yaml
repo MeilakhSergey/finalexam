@@ -27,7 +27,7 @@ spec:
       containers:
         - image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
           imagePullPolicy: IfNotPresent
-          name: docker-image
+          name: my-app
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
