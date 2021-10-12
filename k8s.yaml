@@ -25,9 +25,9 @@ spec:
     spec:
       serviceAccountName: ksa-name
       containers:
-        - image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
+        - name: my-app
+          image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
           imagePullPolicy: IfNotPresent
-          name: my-app
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
@@ -60,7 +60,7 @@ spec:
 
             # Replace DB_PORT with the port the proxy should listen on
             # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
-            - "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306"
+            - "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:127.0.0.1:3306"
           securityContext:
             # The default Cloud SQL proxy image runs as the
             # "nonroot" user and group (uid: 65532) by default.
