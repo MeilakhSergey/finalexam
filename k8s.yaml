@@ -25,7 +25,7 @@ spec:
     spec:
 #      serviceAccountName: ksa-name
       containers:
-        - name: my-app
+        - name: docker-image
           image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
           imagePullPolicy: IfNotPresent
           resources: {}
