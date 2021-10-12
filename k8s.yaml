@@ -51,8 +51,10 @@ spec:
           # It is recommended to use the latest version of the Cloud SQL proxy
           # Make sure to update on a regular schedule!
           image: gcr.io/cloudsql-docker/gce-proxy:1.26.0
-          command:
-            - "/cloud_sql_proxy"
+          command: ["/cloud_sql_proxy",
+                    "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306",
+                    "-credential_file=/secrets/service_account.json"]
+            #- "/cloud_sql_proxy"
 
             # If connecting from a VPC-native GKE cluster, you can use the
             # following flag to have the proxy connect over private IP
@@ -60,9 +62,9 @@ spec:
 
             # Replace DB_PORT with the port the proxy should listen on
             # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
-            - "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306"
+            #- "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306"
             # This flag specifies where the service account key can be found
-            - "-credential_file=/secrets/service_account.json"
+            #- "-credential_file=/secrets/service_account.json"
           securityContext:
             # The default Cloud SQL proxy image runs as the
             # "nonroot" user and group (uid: 65532) by default.
