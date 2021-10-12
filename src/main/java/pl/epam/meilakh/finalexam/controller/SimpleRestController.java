@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 @RestController
 public class SimpleRestController {
 
-    @Autowired
-    private PersonRepository personRepository;
+//    @Autowired
+//    private PersonRepository personRepository;
 
     @GetMapping("/hello")
     public String getHello() {
@@ -24,10 +24,10 @@ public class SimpleRestController {
         return "It's ALIVE!!!!!!     ALIVE!!!!!";
     }
 
-    @GetMapping("/person")
-    public String getAll() {
-        return personRepository.findAll().stream()
-                .map(Person::toString)
-                .collect(Collectors.joining());
-    }
+//    @GetMapping("/person")
+//    public String getAll() {
+//        return personRepository.findAll().stream()
+//                .map(Person::toString)
+//                .collect(Collectors.joining());
+//    }
 }
