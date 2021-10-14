@@ -25,56 +25,56 @@ spec:
     spec:
       #      serviceAccountName: ksa-name
       containers:
-        - name: docker-image
-          image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
-          imagePullPolicy: IfNotPresent
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          env:
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: username
-            - name: DB_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: password
-            - name: DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: database
-        - name: cloud-sql-proxy
-          # It is recommended to use the latest version of the Cloud SQL proxy
-          # Make sure to update on a regular schedule!
-          image: gcr.io/cloudsql-docker/gce-proxy:1.26.0
-          command: ["/cloud_sql_proxy",
-                    "-ip_address_types=PRIVATE",
-                    "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306",
-                    "-credential_file=/secrets/service_account.json"]
-          securityContext:
+      - name: docker-image
+        image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: username
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: password
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: database
+      - name: cloud-sql-proxy
+        # It is recommended to use the latest version of the Cloud SQL proxy
+        # Make sure to update on a regular schedule!
+        image: gcr.io/cloudsql-docker/gce-proxy:1.26.0
+        command: ["/cloud_sql_proxy",
+#                    "-ip_address_types=PRIVATE",
+                  "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306",
+                  "-credential_file=/secrets/service_account.json"]
+        securityContext:
 #             The default Cloud SQL proxy image runs as the
 #           "nonroot" user and group (uid: 65532) by default.
-            runAsNonRoot: true
-          # Resource configuration depends on an application's requirements. You
-          # should adjust the following values based on what your application
-          # needs. For details, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-          volumeMounts:
-            - name: sa-secret-volume
-              mountPath: /secrets/
-              readOnly: true
-          resources:
-            requests:
-              memory: "2Gi"
-              cpu: "1"
-      #      dnsPolicy: ClusterFirst
-      #      restartPolicy: Always
-      #      schedulerName: default-scheduler
-      #      securityContext: {}
-      #      terminationGracePeriodSeconds: 30
+          runAsNonRoot: true
+        # Resource configuration depends on an application's requirements. You
+        # should adjust the following values based on what your application
+        # needs. For details, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+        volumeMounts:
+          - name: sa-secret-volume
+            mountPath: /secrets/
+            readOnly: true
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "0.25"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
       volumes:
         - name: sa-secret-volume
           secret:
