@@ -48,9 +48,9 @@ spec:
                   name: db-secret
                   key: database
             - name: SPRING_DATASOURCE_URL
-                value: jdbc:mysql://localhost:3306/appDB?useUnicode=true&characterEncoding=utf8&useSSL=false
-#            ports:
-#              - containerPort: 8080
+              value: jdbc:mysql://localhost:3306/appDB?useUnicode=true&characterEncoding=utf8&useSSL=false
+          ports:
+            - containerPort: 8080
         - name: cloud-sql-proxy
           # It is recommended to use the latest version of the Cloud SQL proxy
           # Make sure to update on a regular schedule!
