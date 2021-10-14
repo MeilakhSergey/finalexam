@@ -52,6 +52,7 @@ spec:
           # Make sure to update on a regular schedule!
           image: gcr.io/cloudsql-docker/gce-proxy:1.26.0
           command: ["/cloud_sql_proxy",
+                    "-ip_address_types=PRIVATE",
                     "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306",
                     "-credential_file=/secrets/service_account.json"]
             #- "/cloud_sql_proxy"
