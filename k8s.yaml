@@ -48,7 +48,7 @@ spec:
                   name: db-secret
                   key: database
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://localhost:3305/appDB?useUnicode=true&characterEncoding=utf8&useSSL=false
+              value: jdbc:mysql:////appDB
           ports:
             - containerPort: 8080
         - name: cloud-sql-proxy
