@@ -47,10 +47,6 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: database
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql:///appDB
-          ports:
-            - containerPort: 8080
         - name: cloud-sql-proxy
           # It is recommended to use the latest version of the Cloud SQL proxy
           # Make sure to update on a regular schedule!
