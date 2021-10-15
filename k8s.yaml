@@ -23,7 +23,7 @@ spec:
       labels:
         app: my-app
     spec:
-      #      serviceAccountName: ksa-name
+      serviceAccountName: ksa-name
       containers:
       - name: docker-image
         image: europe-west4-docker.pkg.dev/aerial-vehicle-328606/docker-repo/docker-image:tag1
@@ -52,9 +52,9 @@ spec:
         # Make sure to update on a regular schedule!
         image: gcr.io/cloudsql-docker/gce-proxy:1.26.0
         command: ["/cloud_sql_proxy",
-#                    "-ip_address_types=PRIVATE",
-                  "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306",
-                  "-credential_file=/secrets/service_account.json"]
+                  "-ip_address_types=PRIVATE",
+                  "-instances=aerial-vehicle-328606:europe-west4:my-sql=tcp:3306"]
+#                  "-credential_file=/secrets/service_account.json"]
         securityContext:
 #             The default Cloud SQL proxy image runs as the
 #           "nonroot" user and group (uid: 65532) by default.
@@ -62,10 +62,10 @@ spec:
         # Resource configuration depends on an application's requirements. You
         # should adjust the following values based on what your application
         # needs. For details, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-        volumeMounts:
-          - name: sa-secret-volume
-            mountPath: /secrets/
-            readOnly: true
+#        volumeMounts:
+#          - name: sa-secret-volume
+#            mountPath: /secrets/
+#            readOnly: true
         resources:
           requests:
             memory: "2Gi"
@@ -75,7 +75,7 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-      volumes:
-        - name: sa-secret-volume
-          secret:
-            secretName: service-account-secret
+#      volumes:
+#        - name: sa-secret-volume
+#          secret:
+#            secretName: service-account-secret
