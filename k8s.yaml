@@ -68,8 +68,8 @@ spec:
 #            readOnly: true
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "0.25"
+            memory: "4Gi"
+            cpu: "2"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
