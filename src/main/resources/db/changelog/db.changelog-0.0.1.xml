@@ -14,4 +14,11 @@
         </insert>
     </changeSet>
 
+    <changeSet author="Meilakh" id="0.0.1b">
+        <insert tableName="person">
+            <column name="name" value="name2"/>
+            <column name="age" value="22"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
